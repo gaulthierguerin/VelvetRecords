@@ -2,6 +2,17 @@ div.vh-h-80 {
     height: 80vh;
 }
 
+img.album_cover {
+    border-radius: 3%;
+}
+
+hr {
+    clear: both;
+    display: block;
+    width: 92%;
+    height: 1px;
+}
+
 /* body {
     background-image: url(../img/background_Img2.jpg);
     background-size: cover;

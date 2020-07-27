@@ -1,8 +1,7 @@
 <?php
 
-require ('model/model.php');
+// require ('model/model.php');
 
-$list = getDiscs();
 $title = 'Velvet Records - List';
 
 ob_start();
@@ -28,7 +27,7 @@ ob_start();
                 <p class="h1">Discs list (<?=count($list)?>)</p>
             </div>
             <div class="col-2 d-flex justify-content-end">
-                <a href="index.php.action=addDisc"><button class="btn btn-info mt-2">Ajouter</button></a>
+                <a href="index.php?action=addForm"><button class="btn btn-info mt-2">Ajouter</button></a>
             </div>
         </div>
         
@@ -36,7 +35,7 @@ ob_start();
         <div class="row flex-wrap">
             <?php foreach ($list as $disc){ ?>
                     <div class="col-12 col-md-3 mb-3 mt-md-2 mb-md-3">
-                        <img class="album_cover w-100 img-rounded" src="assets/img/<?=$disc->disc_picture?>" alt="<?=$disc->disc_title?> cover"
+                        <img class="album_cover w-100" src="assets/img/<?=$disc->disc_picture?>" alt="<?=$disc->disc_title?> cover"
                         title="<?=$disc->disc_title?> cover">
                     </div>  
                     <div class="col-12 col-md-3 my-md-3 d-flex align-items-start flex-column">
@@ -45,9 +44,8 @@ ob_start();
                         <p class="h6">Label : <span class="font-weight-normal"><?= $disc->disc_label ?></span></p>
                         <p class="h6">Year : <span class="font-weight-normal"><?= $disc->disc_year ?></span></p>
                         <p class="h6">Genre : <span class="font-weight-normal"><?= $disc->disc_genre ?></span></p>
-                        <a href="details_disc.php?disc_id=<?=$disc->disc_id?>" class="mt-auto mb-md-3 align-self-stretch"><button class="btn btn-info">Details</button></a>
+                        <a href="index.php?disc_id=<?=$disc->disc_id?>&action=discDetails" class="mt-auto mb-md-3 align-self-stretch"><button class="btn btn-info">Details</button></a>
                     </div>     
-                    
                 <hr class="d-block d-md-none">
             <?php } ?>
         </div>
