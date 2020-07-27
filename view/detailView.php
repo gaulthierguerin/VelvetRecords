@@ -20,7 +20,7 @@ ob_start();
 </nav>
 
 <div class="container">
-    <p class="h1">Details</p>
+    <p class="h1 mt-2">Details</p>
     <form>
         <div class="row">
             <div class="col-12">
@@ -63,7 +63,7 @@ ob_start();
                     <div class="col-12 col-md-6 mb-2 d-flex justify-content-center align-items-end ">
                         <button class="btn btn-info btn-lg btn-block">Modifier</button>
                         <button class="btn btn-info btn-lg btn-block mx-2">Supprimer</button>
-                        <a href="index.php?action=discList" class="btn btn-info btn-lg btn-block">Retour</a>
+                        <a href="index.php?action=discsList" class="btn btn-info btn-lg btn-block">Retour</a>
                     </div>
         </div>
     </form>
@@ -72,3 +72,4 @@ ob_start();
 <?php
 $content = ob_get_clean();
 require('template/template.php');
+?>

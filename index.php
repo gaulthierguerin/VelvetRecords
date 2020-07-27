@@ -1,7 +1,7 @@
 <?php
 
-require_once('controller/listController.php');
-require_once('controller/homepageController.php');
+require('controller/listController.php');
+require('controller/homepageController.php');
 require_once('controller/addController.php');
 require_once('controller/detailController.php');
 
