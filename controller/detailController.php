@@ -9,5 +9,5 @@ function discDetails() {
 
     require_once('view/detailView.php');
 
-
+    return $details;
 }

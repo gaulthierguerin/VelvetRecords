@@ -7,4 +7,5 @@ function discsList() {
     $list = getDiscs();
 
     require('view/listView.php');
+    return $list;
 }

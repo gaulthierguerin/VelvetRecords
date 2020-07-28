@@ -57,13 +57,13 @@ ob_start();
             </div>
         </div>
         <div class="row">
-                    <div class="col-12 w-100 col-md-6 mb-2">
+                    <div class="col-12 w-100 col-md-6 mb-2 mt-2">
                         <img class="album_cover w-100 text-center" src="assets/img/<?=$details->disc_picture?>"  alt="<?=$details->disc_picture?> cover">        
                     </div>
                     <div class="col-12 col-md-6 mb-2 d-flex justify-content-center align-items-end ">
-                        <button class="btn btn-info btn-lg btn-block">Modifier</button>
-                        <button class="btn btn-info btn-lg btn-block mx-2">Supprimer</button>
-                        <a href="index.php?action=discsList" class="btn btn-info btn-lg btn-block">Retour</a>
+                        <a href="index.php?action=updateForm&disc_id=<?=$details->disc_id?>" class="btn btn-info btn-lg btn-block">Update</a>
+                        <a href="index.php?action=deleteThing" class="btn btn-info btn-lg btn-block mx-2">Delete</a>
+                        <a href="index.php?action=discsList" class="btn btn-info btn-lg btn-block">Back</a>
                     </div>
         </div>
     </form>

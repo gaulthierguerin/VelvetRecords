@@ -27,7 +27,7 @@ ob_start();
                 <p class="h1">Discs list (<?=count($list)?>)</p>
             </div>
             <div class="col-2 d-flex justify-content-end">
-                <a href="index.php?action=addForm"><button class="btn btn-info mt-2">Ajouter</button></a>
+                <a href="index.php?action=addForm"><button class="btn btn-info mt-2">Add</button></a>
             </div>
         </div>
         
@@ -40,11 +40,11 @@ ob_start();
                     </div>  
                     <div class="col-12 col-md-3 my-md-3 d-flex align-items-start flex-column">
                         <p class="h5 font-weight-bold"><?= $disc->disc_title ?></p>
-                        <p class="h6"><?= $disc->artist_name?></p>
-                        <p class="h6">Label : <span class="font-weight-normal"><?= $disc->disc_label ?></span></p>
-                        <p class="h6">Year : <span class="font-weight-normal"><?= $disc->disc_year ?></span></p>
-                        <p class="h6">Genre : <span class="font-weight-normal"><?= $disc->disc_genre ?></span></p>
-                        <a href="index.php?disc_id=<?=$disc->disc_id?>&action=discDetails" class="mt-auto mb-md-3 align-self-stretch"><button class="btn btn-info">Details</button></a>
+                        <p class="h6"><?=$disc->artist_name?></p>
+                        <p class="h6">Label : <span class="font-weight-normal"><?=$disc->disc_label ?></span></p>
+                        <p class="h6">Year : <span class="font-weight-normal"><?=$disc->disc_year ?></span></p>
+                        <p class="h6">Genre : <span class="font-weight-normal"><?=$disc->disc_genre ?></span></p>
+                        <a href="index.php?disc_id=<?=$disc->disc_id?>&action=discDetails" class="mt-auto mb-md-1 align-self-stretch"><button class="btn btn-info">Details</button></a>
                     </div>     
                 <hr class="d-block d-md-none">
             <?php } ?>
@@ -52,6 +52,6 @@ ob_start();
     </div>
 
 <?php    
-$content=ob_get_clean();
+$content = ob_get_clean();
 require ('template/template.php');
 ?>
