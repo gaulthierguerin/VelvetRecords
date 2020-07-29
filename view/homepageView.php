@@ -20,6 +20,8 @@
         <p class="h1 welcome">Welcome on Velvet Records</p>
     </div>
 
-<?php $content = ob_get_clean(); ?>
+<?php
+    $content = ob_get_clean();
 
-<?php require('template/template.php'); ?>
+    require_once('template/template.php');
+?>

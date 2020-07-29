@@ -11,7 +11,7 @@ function addForm() {
 
     addDisc();
 
-    require('view/addView.php');
+    require_once('view/addView.php');
     return $artists;
 }
 

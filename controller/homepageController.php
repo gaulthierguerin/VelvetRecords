@@ -2,6 +2,6 @@
 
 function home(){
 
-    require('view/homepageView.php');
+    require_once('view/homepageView.php');
 
 }

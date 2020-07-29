@@ -1,6 +1,6 @@
 <?php 
 
-require('model/detailModel.php');
+require_once('model/detailModel.php');
 
 
 function discDetails() {

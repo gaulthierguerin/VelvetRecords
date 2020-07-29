@@ -81,8 +81,7 @@ ob_start();
     </div>
 
 <?php
-
 $content = ob_get_clean();
-require('template/template.php');
 
+require_once('template/template.php');
 ?>

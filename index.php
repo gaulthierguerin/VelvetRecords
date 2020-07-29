@@ -1,10 +1,11 @@
 <?php
 
-require('controller/listController.php');
-require('controller/homepageController.php');
+require_once('controller/listController.php');
+require_once('controller/homepageController.php');
 require_once('controller/addController.php');
 require_once('controller/detailController.php');
-require_once ('controller/updateController.php');
+require_once('controller/updateController.php');
+require_once('controller/deleteController.php');
 
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'discsList') {
@@ -19,6 +20,12 @@ if (isset($_GET['action'])) {
         updateForm();
     } else if ($_GET['action'] == 'updateDisc') {
         updateDisc();
+    } else if ($_GET['action'] == 'deleteDiscConfirm') {
+        deleteDiscConfirm();
+    } else if ($_GET['action'] == 'deleteDisc') {
+        deleteDisc();
+    } else if ($_GET['action'] == 'deleteSuccess') {
+        deleteSuccess();
     }
 } else {
     home();

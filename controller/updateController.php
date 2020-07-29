@@ -1,6 +1,6 @@
 <?php
 
-require('model/updateModel.php');
+require_once('model/updateModel.php');
 
 function updateDisc()
 {
@@ -21,9 +21,15 @@ function updateDisc()
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+        $disc_id = $_POST['disc_id'];
         $title = test_input($_POST["title"]);
         $year = test_input($_POST["year"]);
-        $picture = test_input($_POST["picture"]);
+        if (!empty($_POST["picture"])) {
+          $picture = $_FILES;
+        } else {
+            $picture = null;
+            $request = $db->prepare("UPDATE disc SET disc_title = ?, disc_year = ?, disc_label = ?, disc_genre = ?, disc_price = ?, artist_id = ? WHERE disc_id = ?");
+        }
         $genre = test_input($_POST["genre"]);
         $label = test_input($_POST["label"]);
         $price = test_input($_POST["price"]);
@@ -38,32 +44,29 @@ function updateDisc()
         var_dump($id);
 
         // On met les types autorisés dans un tableau (ici pour une image)
-        $aMimeTypes = array("image/gif", "image/jpeg", "image/pjpeg", "image/png", "image/x-png", "image/tiff");
+        //$aMimeTypes = array("image/gif", "image/jpeg", "image/pjpeg", "image/png", "image/x-png", "image/tiff");
 
         // On extrait le type du fichier via l'extension FILE_INFO
-        $finfo = finfo_open(FILEINFO_MIME_TYPE);
-        $mimetype = finfo_file($finfo, $_FILES[$picture]["tmp"]);
-        finfo_close($finfo);
+        //$finfo = finfo_open(FILEINFO_MIME_TYPE);
+        //$mimetype = finfo_file($finfo, $_FILES[$picture]["tmp"]);
+        //finfo_close($finfo);
 
-        if (in_array($mimetype, $aMimeTypes)) {
-            move_uploaded_file($_FILES[$picture]["tmp"], "assets/img/" . $picture . ".jpg");
+        //if (in_array($mimetype, $aMimeTypes)) {
+        //    move_uploaded_file($_FILES[$picture]["tmp"], "assets/img/" . $picture . ".jpg");
+        //} else {
+        //
+        //     Le type n'est pas autorisé, donc ERREUR
+        //
+        //    echo "Type de fichier non autorisé";
+        //    exit;
+        //}
+
+
+        if (!empty($_POST["picture"])) {
+            $request->execute([$title, $year, $picture, $label, $genre, $price, $id, $disc_id]);
         } else {
-
-            // Le type n'est pas autorisé, donc ERREUR
-
-            echo "Type de fichier non autorisé";
-            exit;
+            $request->execute([$title, $year, $label, $genre, $price, $id, $disc_id]);
         }
-
-        $request->bindValue(':disc_title', $title); //lie les valeurs à leurs entrée en BDD
-        $request->bindValue(':disc_year', $year);
-        $request->bindValue(':disc_picture', $picture);
-        $request->bindValue(':disc_label', $label);
-        $request->bindValue(':disc_genre', $genre);
-        $request->bindValue(':disc_price', $price);
-        $request->bindValue(':artist_id', $id);
-
-        $request->execute([$title, $year, $picture, $label, $genre, $price, $id]);
 
     }
 

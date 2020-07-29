@@ -21,36 +21,37 @@ ob_start();
 
 <div class="container">
     <p class="h1 mt-2">Details</p>
-    <form>
+    <form action="index.php?action=updateForm" method="post">
+        <input type="hidden" name="disc_id" value="<?=$details->disc_id?>">
         <div class="row">
             <div class="col-12">
                 <div class="form-row mb-2">
                     <div class="col">
-                        <label for="title">Title</label>
+                        <label for="title" class="h5">Title</label>
                         <input type="text" class="form-control" name="title" value="<?=$details->disc_title?>" disabled>
                     </div>
                     <div class="col">
-                        <label for="artist">Artist</label>
+                        <label for="artist" class="h5">Artist</label>
                         <input type="text" class="form-control" name="artist" value="<?=$details->artist_name?>" disabled>
                     </div>
                 </div>
                 <div class="form-row mb-2">
                     <div class="col">
-                        <label for="year">Year</label>
+                        <label for="year" class="h5">Year</label>
                         <input type="text" class="form-control" name="year" value="<?=$details->disc_year?>" disabled>
                     </div>
                     <div class="col">
-                        <label for="genre">Genre</label>
+                        <label for="genre" class="h5">Genre</label>
                         <input type="text" class="form-control" name="genre" value="<?=$details->disc_genre?>" disabled>
                     </div>
                 </div>
                 <div class="form-row mb-2">
                     <div class="col">
-                        <label for="label">Label</label>
+                        <label for="label" class="h5">Label</label>
                         <input type="text" class="form-control" name="label" value="<?=$details->disc_label?>" disabled>
                     </div>
                     <div class="col">
-                        <label for="price">Price</label>
+                        <label for="price" class="h5">Price</label>
                         <input type="text" class="form-control" name="price" value="<?=$details->disc_price?>" disabled>
                     </div>
                 </div>
@@ -61,8 +62,8 @@ ob_start();
                         <img class="album_cover w-100 text-center" src="assets/img/<?=$details->disc_picture?>"  alt="<?=$details->disc_picture?> cover">        
                     </div>
                     <div class="col-12 col-md-6 mb-2 d-flex justify-content-center align-items-end ">
-                        <a href="index.php?action=updateForm&disc_id=<?=$details->disc_id?>" class="btn btn-info btn-lg btn-block">Update</a>
-                        <a href="index.php?action=deleteThing" class="btn btn-info btn-lg btn-block mx-2">Delete</a>
+                        <button type="submit" class="btn btn-info btn-lg btn-block">Update</button>
+                        <a href="index.php?disc_id=<?=$details->disc_id?>&action=deleteDiscConfirm" class="btn btn-info btn-lg btn-block mx-2">Delete</a>
                         <a href="index.php?action=discsList" class="btn btn-info btn-lg btn-block">Back</a>
                     </div>
         </div>
@@ -71,5 +72,5 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-require('template/template.php');
+require_once('template/template.php');
 ?>

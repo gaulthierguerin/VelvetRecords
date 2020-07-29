@@ -1,5 +1,5 @@
 <?php
-require('model/addModel.php');
+require_once('model/addModel.php');
 
 function addDisc () {
 
@@ -56,7 +56,7 @@ function addDisc () {
 
         //if (in_array($mimetype, $aMimeTypes))
         //{
-        //    move_uploaded_file($_FILES["pictures"]["tmp"], "assets/img/" . $picture . ".jpg");
+        //    move_uploaded_file($_FILES["pictures"]["tmp"], "assets/img/" . $picture['name'] . ".jpg");
         //}
         //else
         //{
@@ -69,7 +69,7 @@ function addDisc () {
 
         $request -> bindValue(':disc_title', $title); //lie les valeurs à leurs entrée en BDD
         $request -> bindValue(':disc_year', $year);
-        $request -> bindValue(':disc_picture', $picture);
+        $request -> bindValue(':disc_picture', $picture[0]);
         $request -> bindValue(':disc_label', $label);
         $request -> bindValue(':disc_genre', $genre);
         $request -> bindValue(':disc_price', $price);

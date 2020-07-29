@@ -21,6 +21,12 @@ ob_start();
   	</div>
 </nav>
 
+<?php
+if ($success == true) {
+    echo $success[1];
+}
+?>
+
 <div class="container">
         <div class="row mt-2">
             <div class="col-10">
@@ -53,5 +59,5 @@ ob_start();
 
 <?php    
 $content = ob_get_clean();
-require ('template/template.php');
+require_once('template/template.php');
 ?>
