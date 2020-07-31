@@ -22,37 +22,50 @@ ob_start();
 <div class="container">
     <p class="h1 mt-2">Details</p>
     <form action="index.php?action=updateDisc" method="post">
-        <input type="hidden" name="disc_id" value="<?=$discInfo->disc_id?>">
+        <input type="hidden" name="disc_id" value="<?=$details->disc_id?>">
         <div class="row">
             <div class="col-12">
                 <div class="form-row mb-2">
                     <div class="col">
                         <label for="title" class="h5">Title</label>
-                        <input type="text" class="form-control" name="title" value="<?=$discInfo->disc_title?>">
+                        <input type="text" class="form-control" name="title" value="<?=$details->disc_title?>" required>
+                        <p class="text-danger ml-1"><?php if (isset($error[0])){ echo $error[0]; }?></p>
                     </div>
                     <div class="col">
                         <label for="artist" class="h5">Artist</label>
-                        <input type="text" class="form-control" name="artist" value="<?=$discInfo->artist_name?>">
+                        <select name="artist" id="artist" class="form-control" id="artist" required>
+                            <option value="<?=$details->artist_id?>" selected><?=$details->artist_name?></option>
+                            <?php foreach ($artists as $artist) { ?>
+
+                                <option value="<?=$artist->artist_id?>"><?=$artist->artist_name?></option>
+
+                            <?php } ?>
+                        </select>
+                        <p class="text-danger ml-1"><?php if (isset($error[5])){ echo $error[5]; }?></p>
                     </div>
                 </div>
                 <div class="form-row mb-2">
                     <div class="col">
                         <label for="year" class="h5">Year</label>
-                        <input type="text" class="form-control" name="year" value="<?=$discInfo->disc_year?>">
+                        <input type="text" class="form-control" name="year" value="<?=$details->disc_year?>" required>
+                        <p class="text-danger ml-1"><?php if (isset($error[1])){ echo $error[1]; }?></p>
                     </div>
                     <div class="col">
                         <label for="genre" class="h5">Genre</label>
-                        <input type="text" class="form-control" name="genre" value="<?=$discInfo->disc_genre?>">
+                        <input type="text" class="form-control" name="genre" value="<?=$details->disc_genre?>" required>
+                        <p class="text-danger ml-1"><?php if (isset($error[2])){ echo $error[2]; }?></p>
                     </div>
                 </div>
                 <div class="form-row mb-2">
                     <div class="col">
                         <label for="label" class="h5">Label</label>
-                        <input type="text" class="form-control" name="label" value="<?=$discInfo->disc_label?>">
+                        <input type="text" class="form-control" name="label" value="<?=$details->disc_label?>" required>
+                        <p class="text-danger ml-1"><?php if (isset($error[3])){ echo $error[3]; }?></p>
                     </div>
                     <div class="col">
                         <label for="price" class="h5">Price</label>
-                        <input type="text" class="form-control" name="price" value="<?=$discInfo->disc_price?>">
+                        <input type="text" class="form-control" name="price" value="<?=$details->disc_price?>" required>
+                        <p class="text-danger ml-1"><?php if (isset($error[4])){ echo $error[4]; }?></p>
                     </div>
                 </div>
                 <div class="form-group mb-0">
@@ -63,12 +76,12 @@ ob_start();
         </div>
         <div class="row">
             <div class="d-flex col-12 w-100 col-md-6 mb-2 mt-2">
-                <img class="album_cover w-100 text-center" src="assets/img/<?=$discInfo->disc_picture?>"  alt="<?=$discInfo->disc_picture?> cover">
+                <img class="album_cover w-100 text-center" src="assets/img/<?=$details->disc_picture?>"  alt="<?=$details->disc_picture?> cover">
 
             </div>
             <div class="col-12 col-md-6 mb-2 d-flex justify-content-between align-items-end ">
                 <button type="submit" class="btn btn-info btn-lg btn-block mr-1">Update</button>
-                <a href="index.php?disc_id=<?=$discInfo->disc_id?>&action=discDetails" class="btn btn-info btn-lg btn-block ml-1">Back</a>
+                <a href="index.php?disc_id=<?=$details->disc_id?>&action=discDetails" class="btn btn-info btn-lg btn-block ml-1">Back</a>
             </div>
         </div>
     </form>

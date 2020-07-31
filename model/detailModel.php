@@ -10,6 +10,11 @@ function getDiscDetails($disc_id) {
     $details = $request->Fetch(PDO::FETCH_OBJ);
     $request->closeCursor();
 
+    $artistRequest = $db->query("SELECT artist_id, artist_name FROM artist ORDER BY artist_name");
+    $artists = $artistRequest->FetchAll(PDO::FETCH_OBJ);
+    $artistRequest->closeCursor();
+
+
     return $details;
 }
 

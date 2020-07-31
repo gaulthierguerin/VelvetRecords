@@ -21,11 +21,6 @@ ob_start();
   	</div>
 </nav>
 
-<?php
-if ($success == true) {
-    echo $success[1];
-}
-?>
 
 <div class="container">
         <div class="row mt-2">

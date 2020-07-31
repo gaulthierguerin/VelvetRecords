@@ -10,5 +10,5 @@ function deleteDisc() {
     $request = $db->query("DELETE FROM disc WHERE disc_id = $disc_id");
     $request->closeCursor();
 
-    header("index.php?action=deleteSuccess");
+    header("location: index.php?action=deleteSuccess");
 }

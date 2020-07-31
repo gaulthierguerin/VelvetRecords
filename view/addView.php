@@ -22,15 +22,14 @@ ob_start();
     <div class="container">
 
         <p class="h2 my-3">Add a vinyl record</p>
-        <form action="index.php?action=addDisc" method="POST" enctype="multipart/form-data">
+        <form action="index.php?action=addDisc" method="POST" enctype="multipart/form-data" id="addForm">
             <div class="form-group ">
                 <label for="title" class="h5">Title</label>
-                <input type="text" name="title" class="form-control" placeholder="Enter title">
-                <!-- <div class="alert alert-danger mt-1" role="alert" id="alertTitle"></div> -->
+                <input type="text" name="title" class="form-control" placeholder="Enter title" id="title" required>
             </div>
             <div class="form-group">
                 <label for="artist" class="h5">Artist</label>
-                <select name="artist" id="artist" class="form-control">
+                <select name="artist" id="artist" class="form-control" id="artist" required>
                     <option value="0" selected disabled>Choose an artist</option>
                     <?php foreach ($artists as $artist) { ?>
 
@@ -39,39 +38,26 @@ ob_start();
                     <?php } ?>
                 </select>
             </div>
-            <div class="form-group ">
+            <div class="form-group">
                 <label for="year" class="h5">Year</label>
-                <input type="text" name="year" class="form-control" placeholder="Enter year">
-                <!-- <div class="alert alert-danger mt-1" role="alert" id="alertYear"></div> -->
-
+                <input type="text" name="year" class="form-control" placeholder="Enter year" id="year" required>
             </div>
-            <div class="form-group ">
+            <div class="form-group">
                 <label for="genre" class="h5">Genre</label>
-                <input type="text" name="genre" class="form-control" placeholder="Enter genre (Rock, Pop, Prog ...)">
-                <!-- <div class="alert alert-danger mt-1" role="alert" id="alertGenre"></div> -->
-
-
+                <input type="text" name="genre" class="form-control" placeholder="Enter genre (Rock, Pop, Prog ...)" id="genre" required>
             </div>
-            <div class="form-group ">
+            <div class="form-group">
                 <label for="label" class="h5">Label</label>
-                <input type="text" name="label" class="form-control" placeholder="Enter label (EMI, Warner, PolyGram, Univers sale ...)">
-                <!-- <div class="alert alert-danger mt-1" role="alert" id="alertLabel"></div> -->
-
-
+                <input type="text" name="label" class="form-control" placeholder="Enter label (EMI, Warner, PolyGram, Univers sale ...)" id="label" required>
             </div>
             <div class="form-group ">
                 <label for="price" class="h5">Price</label>
-                <input type="text" name="price" class="form-control">
-                <!-- <div class="alert alert-danger mt-1" role="alert" id="alertPrice"></div> -->
-
-
+                <input type="text" name="price" class="form-control" id="price" required>
             </div>
             <div class="form-group mb-0">
                 <label for="picture" class="h5">Picture</label>
             </div>
-            <input type="file" name="picture" accept="image/png, image/jpeg">
-            <!-- <div class="alert alert-danger mt-1" role="alert" id="alertPicture"></div> -->
-
+            <input type="file" name="picture" accept="image/png, image/jpeg" id="picture" required>
             <div class="mt-3">
                 <button type="submit" class="btn btn-info">Add</button>
                 <a href="index.php?action=discsList" class="btn btn-info">Back</a>

@@ -46,37 +46,38 @@ function addDisc () {
         var_dump($price);
         var_dump($id);
 
-        //// On met les types autorisés dans un tableau (ici pour une image)
-        //$aMimeTypes = array("image/gif", "image/jpeg", "image/pjpeg", "image/png", "image/x-png", "image/tiff");
+// On met les types autorisés dans un tableau (ici pour une image)
+        $aMimeTypes = array("image/gif", "image/jpeg", "image/pjpeg", "image/png", "image/x-png", "image/tiff");
 
-        //// On extrait le type du fichier via l'extension FILE_INFO
-        //$finfo = finfo_open(FILEINFO_MIME_TYPE);
-        //$mimetype = finfo_file($finfo, $_FILES[$picture]["tmp"]);
-        //finfo_close($finfo);
+// On extrait le type du fichier via l'extension FILE_INFO
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $mimetype = finfo_file($finfo, $_FILES["picture"]["tmp_name"]);
+        finfo_close($finfo);
 
-        //if (in_array($mimetype, $aMimeTypes))
-        //{
-        //    move_uploaded_file($_FILES["pictures"]["tmp"], "assets/img/" . $picture['name'] . ".jpg");
-        //}
-        //else
-        //{
+        if (in_array($mimetype, $aMimeTypes))
+        {
+            move_uploaded_file($_FILES["picture"]["tmp_name"], "assets/img/" . $title . ".jpg");
 
-        //// Le type n'est pas autorisé, donc ERREUR
+        }
+        else
+        {
+            // Le type n'est pas autorisé, donc ERREUR
 
-        //echo "Type de fichier non autorisé";
-        //exit;
-        //}
+            echo "Type de fichier non autorisé";
+            exit;
+        }
 
-        $request -> bindValue(':disc_title', $title); //lie les valeurs à leurs entrée en BDD
-        $request -> bindValue(':disc_year', $year);
-        $request -> bindValue(':disc_picture', $picture[0]);
-        $request -> bindValue(':disc_label', $label);
-        $request -> bindValue(':disc_genre', $genre);
-        $request -> bindValue(':disc_price', $price);
-        $request -> bindValue(':artist_id', $id);
+       $request -> bindValue(':disc_title', $title); //lie les valeurs à leurs entrée en BDD
+       $request -> bindValue(':disc_year', $year);
+       $request -> bindValue(':disc_picture', $title .".jpg");
+       $request -> bindValue(':disc_label', $label);
+       $request -> bindValue(':disc_genre', $genre);
+       $request -> bindValue(':disc_price', $price);
+       $request -> bindValue(':artist_id', $id);
 
-        $request->execute();
+       $request->execute();
 
+       header("Location: index.php?action=addSuccess");
     }
 
 }

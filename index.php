@@ -6,6 +6,7 @@ require_once('controller/addController.php');
 require_once('controller/detailController.php');
 require_once('controller/updateController.php');
 require_once('controller/deleteController.php');
+require_once('controller/successController.php');
 
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'discsList') {
@@ -25,7 +26,11 @@ if (isset($_GET['action'])) {
     } else if ($_GET['action'] == 'deleteDisc') {
         deleteDisc();
     } else if ($_GET['action'] == 'deleteSuccess') {
-        deleteSuccess();
+        success();
+    } else if ($_GET['action'] == 'addSuccess') {
+        success();
+    } else if ($_GET['action'] == 'updateSuccess') {
+        success();
     }
 } else {
     home();
