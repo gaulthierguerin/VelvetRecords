@@ -1,6 +1,7 @@
-<?php $title = 'Velvet Records' ?>
-
-<?php ob_start(); ?>
+<?php
+$title = 'Velvet Records';
+ob_start();
+?>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="index.php">
@@ -15,13 +16,13 @@
             </div>
         </div>
     </nav>
-
-    <div class="container d-flex justify-content-center align-items-center vh-h-80">
+<div class="welcome-background">
+    <div class="container d-flex justify-content-center align-items-center vh-h-94">
         <p class="h1 welcome">Welcome on Velvet Records</p>
     </div>
+</div>
 
 <?php
-    $content = ob_get_clean();
-
-    require_once('template/template.php');
+$content = ob_get_clean();
+require_once('template/template.php');
 ?>

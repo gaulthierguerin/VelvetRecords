@@ -5,9 +5,9 @@ require_once('model/model.php');
 function deleteDiscConfirm() {
     $db = dbConnexion();
 
-    $disc_id = $_GET['disc_id'];
+    $disc_id = $_GET['disc_id']; // je récupère les infos liées à l'entrée qui doit être supprimée
 
-    $request = $db->query("SELECT * FROM disc  JOIN artist ON disc.artist_id = artist.artist_id WHERE disc_id = $disc_id");
+    $request = $db->query("SELECT * FROM disc JOIN artist ON disc.artist_id = artist.artist_id WHERE disc_id = $disc_id");
     $discEntry = $request->fetch(PDO::FETCH_OBJ);
     $request->closeCursor();
 

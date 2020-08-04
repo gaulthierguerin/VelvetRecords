@@ -10,6 +10,6 @@ function updateInfo() {
         $disc_id = $_GET['disc_id'];
     }
 
-    return getDiscDetails($disc_id);
+    return getDiscDetails($disc_id); //in detailModel.php
 
 }

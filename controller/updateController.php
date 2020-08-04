@@ -2,14 +2,14 @@
 
 require_once('model/updateModel.php');
 
-function presentView($details, $error){
+function presentUpdateView($details, $error){ // je passe $details et $error en paramètres, pour pouvoir les récupérer en cas d'erreurs
     require('view/updateView.php');
 }
 
 function updateForm(){
     $details = updateInfo();
-    $error = null;
-    presentView($details, $error);
+    $error = null;                          //error = null pour que isset($error) renvoie false et ne produise pas d'erreur "undefined"
+    presentUpdateView($details, $error);
 }
 
 
@@ -27,15 +27,15 @@ function updateDisc()
 
     function test_input($data)
     {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
+        $data = trim($data); // retire les espaces au début et à la fin de la string
+        $data = stripslashes($data); //retire les backslash pour empêcher l'échappement de caractères
+        $data = htmlspecialchars($data); //converti les caractère spéciaux en code html (même si ils sont empêchés par la regex)
         return $data;
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        $disc_id = $_POST['disc_id'];
+        $disc_id = $_POST['disc_id']; //récupéré grâce à un input type hidden dans updateView.php
 
         //vérification -> passage en preg_match de ma valeur POST que je nettoie grâce à ma fonction test_input()
 
@@ -75,14 +75,14 @@ function updateDisc()
             $error[5] = "Please select an artist.";
         }
 
-        if (!empty($_POST["picture"])) {
+        if (!empty($_FILES)) {
             $picture = $_FILES;
         } else {
             $picture = null;
             $request = $db->prepare("UPDATE disc SET disc_title = ?, disc_year = ?, disc_label = ?, disc_genre = ?, disc_price = ?, artist_id = ? WHERE disc_id = ?");
         }
 
-        if ($picture != null) {
+        if (isset($picture)) {
             // On met les types autorisés dans un tableau (ici pour une image)
                 $aMimeTypes = array("image/gif", "image/jpeg", "image/pjpeg", "image/png", "image/x-png", "image/tiff");
 
@@ -93,7 +93,8 @@ function updateDisc()
 
             if (in_array($mimetype, $aMimeTypes))
             {
-                move_uploaded_file($_FILES["picture"]["tmp_name"], "assets/img/" . $title . ".jpg");
+                $picture = $_FILES["picture"]["name"];
+                move_uploaded_file($_FILES["picture"]["tmp_name"], "assets/img/" . $picture . ".jpg");
             }
             else
             {
@@ -105,7 +106,7 @@ function updateDisc()
         }
 
         if (!isset($error)) {
-            if (!empty($_POST["picture"])) {
+            if (isset($picture)) {
                 $request->execute([$title, $year, $picture, $label, $genre, $price, $artist_id, $disc_id]);
                 header("Location: index.php?action=updateSuccess");
             } else {
@@ -114,8 +115,7 @@ function updateDisc()
             }
         } else {
             $details = updateInfo();
-            presentView($details, $error);
-            //header("Location: index.php?disc_id=" . $_POST['disc_id'] ."&action=updateForm");
+            presentUpdateView($details, $error);
         }
 
     }

@@ -2,9 +2,9 @@
 
 // require ('model/model.php');
 
-$title = 'Velvet Records - List';
+$title = 'Velvet Records - List'; // permet de changer le titre dans l'onglet
 
-ob_start();
+ob_start(); // démarre la mise en tampon du contenu
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -25,13 +25,12 @@ ob_start();
 <div class="container">
         <div class="row mt-2">
             <div class="col-10">
-                <p class="h1">Discs list (<?=count($list)?>)</p>
+                <p class="h1">Discs list (<?=count($list)?>)</p> <!-- $list est undefined car non initialisée sur cette page mais dans listModel.php -->
             </div>
             <div class="col-2 d-flex justify-content-end">
                 <a href="index.php?action=addForm"><button class="btn btn-info mt-2">Add</button></a>
             </div>
         </div>
-        
 
         <div class="row flex-wrap">
             <?php foreach ($list as $disc){ ?>
@@ -45,7 +44,7 @@ ob_start();
                         <p class="h6">Label : <span class="font-weight-normal"><?=$disc->disc_label ?></span></p>
                         <p class="h6">Year : <span class="font-weight-normal"><?=$disc->disc_year ?></span></p>
                         <p class="h6">Genre : <span class="font-weight-normal"><?=$disc->disc_genre ?></span></p>
-                        <a href="index.php?disc_id=<?=$disc->disc_id?>&action=discDetails" class="mt-auto mb-md-1 align-self-stretch"><button class="btn btn-info">Details</button></a>
+                        <a href="index.php?disc_id=<?=$disc->disc_id?>&action=discDetails" class="mt-auto mb-md-1 btn btn-info align-self-stretch align-self-md-baseline">Details</a>
                     </div>     
                 <hr class="d-block d-md-none">
             <?php } ?>
@@ -53,6 +52,6 @@ ob_start();
     </div>
 
 <?php    
-$content = ob_get_clean();
+$content = ob_get_clean(); // récupère le contenu du tampon dans une variable pour l'afficher dans le template
 require_once('template/template.php');
 ?>

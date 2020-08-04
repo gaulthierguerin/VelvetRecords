@@ -21,7 +21,7 @@ ob_start();
 
 <div class="container">
     <p class="h1 mt-2">Details</p>
-    <form action="index.php?action=updateDisc" method="post">
+    <form action="index.php?action=updateDisc" enctype="multipart/form-data" method="post">
         <input type="hidden" name="disc_id" value="<?=$details->disc_id?>">
         <div class="row">
             <div class="col-12">

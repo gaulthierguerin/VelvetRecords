@@ -1,6 +1,6 @@
 <?php
 
-require_once('controller/listController.php');
+require_once('controller/listController.php');          // l'index se met en lien avec tout les controllers
 require_once('controller/homepageController.php');
 require_once('controller/addController.php');
 require_once('controller/detailController.php');
@@ -8,7 +8,7 @@ require_once('controller/updateController.php');
 require_once('controller/deleteController.php');
 require_once('controller/successController.php');
 
-if (isset($_GET['action'])) {
+if (isset($_GET['action'])) {                   // tout les liens passent sous forme index.php?action= ""
     if ($_GET['action'] == 'discsList') {
         discsList();
     } else if ($_GET['action'] == 'addForm') {
@@ -31,6 +31,8 @@ if (isset($_GET['action'])) {
         success();
     } else if ($_GET['action'] == 'updateSuccess') {
         success();
+    } else if ($_GET['action'] == '') {
+        home();
     }
 } else {
     home();

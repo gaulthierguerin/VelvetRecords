@@ -20,18 +20,20 @@ ob_start();
 
 <div class="container vh-h-80">
     <div class="mt-5">
-        <?php
+        <div class='alert alert-success'>
+            <?php
         if ($_GET['action'] == 'deleteSuccess') {
-            echo "<div class='alert alert-success'>Entry has been deleted successfully !</div>";
+            echo "Entry has been deleted successfully !";
         } else if ($_GET['action'] == 'addSuccess') {
-            echo "<div class='alert alert-success'>Entry has been added successfully !</div>";
+            echo "Entry has been added successfully !";
         } else if ($_GET['action'] == 'updateSuccess') {
-            echo "<div class='alert alert-success'>Entry has been updated successfully !</div>";
+            echo "Entry has been updated successfully !";
         }
         ?>
+        </div>
     </div>
     <div>
-        <a href="index.php?action=discsList" class="btn btn-block btn-info">Back to list</a>
+        <a href="index.php?action=discsList" class="btn btn-block btn-lg btn-info">Back to list</a>
     </div>
 </div>
 
